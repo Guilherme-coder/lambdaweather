@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class WeatherLambdaHandler implements RequestHandler<Map<String, Object>, Map<String, Object>> {
 
-    private static final String API_KEY = "978b1c6421db37c041b597fa8be774e6";
+    private static final String API_KEY = System.getenv("WEATHER_API_KEY");
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
     private final OkHttpClient httpClient = new OkHttpClient();
