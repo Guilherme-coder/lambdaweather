@@ -21,7 +21,9 @@ public class WeatherLambdaHandler implements RequestHandler<Map<String, Object>,
     @Override
     public Map<String, Object> handleRequest(Map<String, Object> input, Context context) {
         try {
-            String city = (String) input.get("city");
+            String bodyJson = (String) input.get("body");
+            Map<String, Object> body = mapper.readValue(bodyJson, Map.class);
+            String city = (String) body.get("city");
 
             if (city == null || city.isEmpty()) {
                 return createResponse(400, "city parameter is required.");
